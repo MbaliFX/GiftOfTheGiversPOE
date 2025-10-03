@@ -1,0 +1,173 @@
+@page
+@model MakeDonationModel
+@{
+    ViewData["Title"] = "Make a donation";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2.2em;
+        text-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+    }
+
+    form {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 0 16px rgba(0, 123, 255, 0.4);
+        max-width: 600px;
+        margin: 40px auto;
+        color: #fff;
+    }
+
+    fieldset {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
+
+    legend {
+        font-weight: bold;
+        font-size: 1.2em;
+        padding: 0 10px;
+        color: #fff;
+        text-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    textarea,
+    select {
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 6px;
+        padding: 10px;
+        width: 100%;
+        font-size: 1em;
+        color: #fff;
+    }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+    ::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 30px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+    }
+
+        button:hover {
+            box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
+        }
+
+    a.cancel-link {
+        padding: 10px 30px;
+        background: #ccc;
+        color: #333;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        a.cancel-link:hover {
+            background-color: #bbb;
+        }
+</style>
+
+<h2>Make a donation</h2>
+
+<form method="post">
+    <fieldset>
+        <legend>Your Information</legend>
+        <div style="margin-bottom:15px;">
+            <label asp-for="Input.Name">Your Name</label>
+            <input asp-for="Input.Name" type="text" />
+        </div>
+        <div style="margin-bottom:15px;">
+            <label asp-for="Input.Email">Email</label>
+            <input asp-for="Input.Email" type="email" />
+        </div>
+        <div style="margin-bottom:15px;">
+            <label asp-for="Input.ContactNumber">Contact Number</label>
+            <input asp-for="Input.ContactNumber" type="tel" />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Donation Details</legend>
+        <div style="margin-bottom:15px;">
+            <label asp-for="Input.ResourceType">Resource Type</label>
+            <select asp-for="Input.ResourceType">
+                <option value="Food and water">Food and water</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Medical supplies">Medical supplies</option>
+                <option value="Shelter materials">Shelter materials</option>
+                <option value="Hygiene kits">Hygiene kits</option>
+                <option value="Blankets">Blankets</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div style="margin-bottom:15px;">
+            <label asp-for="Input.Quantity">Quantity</label>
+            <input asp-for="Input.Quantity" type="number" min="1" />
+        </div>
+        <div style="margin-bottom:15px;">
+            <label asp-for="Input.AdditionalInfo">Additional Information</label>
+            <textarea asp-for="Input.AdditionalInfo" rows="3"></textarea>
+        </div>
+        <div style="margin-bottom:15px;">
+            <label asp-for="Input.PickupAddress">Pickup Address</label>
+            <input asp-for="Input.PickupAddress" type="text" />
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+        <button type="submit">Submit</button>
+        <a href="/Dashboard" class="cancel-link">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,133 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: url('/background-img.jpg'); /* Adjust path if needed */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 100vh;
+    }
+
+    .glass-form {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    select,
+    input[type="checkbox"] {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        width: 100%;
+        font-size: 1em;
+        margin-top: 6px;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        font-size: 1.1em;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    label {
+        font-weight: bold;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+
+<div style="text-align:center; margin-top:40px;">
+    <h1 style="font-size:2.5em; font-weight:bold; color:white;">Create Your Account</h1>
+</div>
+
+<form method="post" class="glass-form" style="max-width:400px; margin:40px auto 0 auto;">
+    @Html.AntiForgeryToken()
+
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.FullName">Full Name</label><br />
+        <input asp-for="Input.FullName" type="text" />
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.Email">Email Address</label><br />
+        <input asp-for="Input.Email" type="email" />
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.Password">Password</label><br />
+        <input asp-for="Input.Password" type="password" />
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.ConfirmPassword">Confirm Password</label><br />
+        <input asp-for="Input.ConfirmPassword" type="password" />
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.PhoneNumber">Phone Number</label><br />
+        <input asp-for="Input.PhoneNumber" type="tel" />
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.AccountType">Account Type</label><br />
+        <select asp-for="Input.AccountType">
+            <option value="General user">General user</option>
+            <option value="Volunteer">Volunteer</option>
+            <option value="Administrator">Administrator</option>
+        </select>
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <input asp-for="Input.AgreeTerms" type="checkbox" />
+        <label asp-for="Input.AgreeTerms"> I agree to the Ts&Cs</label>
+    </div>
+
+    <button type="submit">Create account</button>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div style="color:red; margin-top:10px;">@Model.ErrorMessage</div>
+    }
+
+    <div style="text-align:center; margin-top:20px;">
+        Already have an account? <a href="/Login">Sign in here</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

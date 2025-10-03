@@ -1,0 +1,138 @@
+@page
+@model ViewIncidentsModel
+@{
+    ViewData["Title"] = "Incident Reports";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2.2em;
+        text-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+    }
+
+    .nav-links {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1em;
+    }
+
+        .nav-links a {
+            color: #00bfff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: text-shadow 0.3s ease;
+        }
+
+            .nav-links a:hover {
+                text-shadow: 0 0 6px rgba(0, 191, 255, 0.8);
+            }
+
+    .glass-table {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 0 16px rgba(0, 123, 255, 0.3);
+        max-width: 1000px;
+        margin: 0 auto 60px auto;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #fff;
+    }
+
+    thead {
+        background-color: rgba(0, 123, 255, 0.2);
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: left;
+    }
+
+    th {
+        font-weight: bold;
+        text-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+    }
+
+    tbody tr:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .no-data {
+        text-align: center;
+        color: #aaa;
+        padding: 20px;
+    }
+
+    a.view-link {
+        color: #00bfff;
+        text-decoration: none;
+    }
+
+        a.view-link:hover {
+            text-shadow: 0 0 6px rgba(0, 191, 255, 0.8);
+        }
+</style>
+
+<h2>Incident Reports</h2>
+
+<div class="nav-links">
+    <a href="/ReportIncident">Report new incident</a> |
+    <a href="/Dashboard">Back to dashboard</a>
+</div>
+
+<div class="glass-table">
+    <table>
+        <thead>
+            <tr>
+                <th>INCIDENT ID</th>
+                <th>TITLE</th>
+                <th>DESCRIPTION</th>
+                <th>LOCATION</th>
+                <th>DATE REPORTED</th>
+                <th>REPORTED BY</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Incidents.Any())
+            {
+                foreach (var incident in Model.Incidents)
+                {
+                    <tr>
+                        <td>@incident.Id</td>
+                        <td>@incident.Type</td>
+                        <td>@incident.Description</td>
+                        <td>@incident.Location</td>
+                        <td>@incident.DateReported.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@incident.ReportedByCount</td>
+                        <td><a href="#" class="view-link">View</a></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="no-data">No incidents reported yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

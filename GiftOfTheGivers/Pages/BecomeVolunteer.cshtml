@@ -1,0 +1,121 @@
+@page
+@model BecomeVolunteerModel
+@{
+    ViewData["Title"] = "Join our volunteer team";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2.2em;
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.6); /* Yellow glow */
+    }
+
+    form {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 0 16px rgba(255, 255, 0, 0.4); /* Yellow glow */
+        max-width: 500px;
+        margin: 40px auto;
+        color: #fff;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    select {
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 6px;
+        padding: 10px;
+        width: 100%;
+        font-size: 1em;
+        color: #fff;
+    }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #ffc107;
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+    ::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 30px;
+        background: #ffc107; /* Yellow button */
+        color: #000;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+    }
+
+        button:hover {
+            box-shadow: 0 0 12px rgba(255, 255, 0, 0.6);
+        }
+
+    a.cancel-link {
+        padding: 10px 30px;
+        background: #ccc;
+        color: #333;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        a.cancel-link:hover {
+            background-color: #bbb;
+        }
+</style>
+
+<h2>Join our volunteer team</h2>
+
+<form method="post">
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.Skills">Skills and qualifications</label>
+        <input asp-for="Input.Skills" type="text" />
+    </div>
+    <div style="margin-bottom:20px;">
+        <label asp-for="Input.Availability">Availability</label>
+        <select asp-for="Input.Availability">
+            <option value="Flexible">Flexible</option>
+            <option value="Weekends only">Weekends only</option>
+            <option value="Weekdays only">Weekdays only</option>
+        </select>
+    </div>
+    <div class="form-actions">
+        <button type="submit">Join as volunteer</button>
+        <a href="/VolunteerDashboard" class="cancel-link">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

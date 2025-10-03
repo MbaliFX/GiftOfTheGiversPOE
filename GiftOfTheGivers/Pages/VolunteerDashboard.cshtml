@@ -1,0 +1,90 @@
+@page
+@model VolunteerDashboardModel
+@{
+    ViewData["Title"] = "Volunteer Dashboard";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2.5em;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.6); /* Yellow glow */
+    }
+
+    .dashboard-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .glass-card {
+        flex: 1 1 200px;
+        min-width: 220px;
+        max-width: 260px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 0 16px rgba(255, 255, 0, 0.4); /* Yellow glow */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: #fff;
+    }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 24px rgba(255, 255, 0, 0.6); /* Yellow glow intensifies */
+        }
+
+    h3 {
+        font-size: 1.3em;
+        text-shadow: 0 0 6px rgba(255, 255, 0, 0.4); /* Yellow glow */
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
+<div>
+    <h1>Volunteer Dashboard</h1>
+</div>
+
+<div class="dashboard-grid">
+    <a href="/BecomeVolunteer">
+        <div class="glass-card">
+            <h3>Become a volunteer</h3>
+        </div>
+    </a>
+    <a href="/CreateVolunteerTask">
+        <div class="glass-card">
+            <h3>Create a volunteer task</h3>
+        </div>
+    </a>
+    <a href="/ViewVolunteerTasks">
+        <div class="glass-card">
+            <h3>View volunteer tasks</h3>
+        </div>
+    </a>
+    <a href="/ViewVolunteers">
+        <div class="glass-card">
+            <h3>View volunteers</h3>
+        </div>
+    </a>
+</div>

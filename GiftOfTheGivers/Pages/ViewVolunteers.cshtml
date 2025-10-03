@@ -1,0 +1,109 @@
+@page
+@model ViewVolunteersModel
+@{
+    ViewData["Title"] = "Our Volunteers";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2.2em;
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.6); /* Yellow glow */
+    }
+
+    .glass-table {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 0 16px rgba(255, 255, 0, 0.3); /* Yellow glow */
+        max-width: 1000px;
+        margin: 30px auto 60px auto;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #fff;
+    }
+
+    thead {
+        background-color: rgba(255, 255, 0, 0.2); /* Yellow header glow */
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: left;
+    }
+
+    th {
+        font-weight: bold;
+        text-shadow: 0 0 4px rgba(255, 255, 0, 0.4); /* Yellow glow */
+    }
+
+    tbody tr:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .no-data {
+        text-align: center;
+        color: #aaa;
+        padding: 20px;
+    }
+</style>
+
+<h2>Our Volunteers</h2>
+
+<div class="glass-table">
+    <table>
+        <thead>
+            <tr>
+                <th>VOLUNTEER ID</th>
+                <th>VOLUNTEER NAME</th>
+                <th>EMAIL</th>
+                <th>SKILLS</th>
+                <th>AVAILABILITY</th>
+                <th>JOIN DATE</th>
+                <th>ASSIGNED TASK</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Volunteers.Any())
+            {
+                foreach (var v in Model.Volunteers)
+                {
+                    <tr>
+                        <td>@v.Id</td>
+                        <td>@v.Name</td>
+                        <td>@v.Email</td>
+                        <td>@v.Skills</td>
+                        <td>@v.Availability</td>
+                        <td>@v.JoinDate.ToString("yyyy-MM-dd")</td>
+                        <td>@v.AssignedTaskCount</td>
+                        <td>Active</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="8" class="no-data">No volunteers yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

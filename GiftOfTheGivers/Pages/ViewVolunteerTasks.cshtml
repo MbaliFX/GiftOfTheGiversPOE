@@ -1,0 +1,125 @@
+@page
+@model ViewVolunteerTasksModel
+@{
+    ViewData["Title"] = "Volunteer Tasks";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 2.2em;
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.6); /* Yellow glow */
+    }
+
+    .nav-links {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1em;
+    }
+
+        .nav-links a {
+            color: #ffc107;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: text-shadow 0.3s ease;
+        }
+
+            .nav-links a:hover {
+                text-shadow: 0 0 6px rgba(255, 255, 0, 0.8);
+            }
+
+    .glass-table {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 0 16px rgba(255, 255, 0, 0.3); /* Yellow glow */
+        max-width: 1000px;
+        margin: 0 auto 60px auto;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #fff;
+    }
+
+    thead {
+        background-color: rgba(255, 255, 0, 0.2); /* Yellow header glow */
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: left;
+    }
+
+    th {
+        font-weight: bold;
+        text-shadow: 0 0 4px rgba(255, 255, 0, 0.4);
+    }
+
+    tbody tr:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .no-data {
+        text-align: center;
+        color: #aaa;
+        padding: 20px;
+    }
+</style>
+
+<h2>Volunteer Tasks</h2>
+
+<div class="nav-links">
+    <a href="/CreateVolunteerTask">Create new</a> |
+    <a href="/VolunteerDashboard">Back to dashboard</a>
+</div>
+
+<div class="glass-table">
+    <table>
+        <thead>
+            <tr>
+                <th>TASK ID</th>
+                <th>TASK NAME</th>
+                <th>DESCRIPTION</th>
+                <th>STATUS</th>
+                <th>ASSIGNED TO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Tasks.Any())
+            {
+                foreach (var task in Model.Tasks)
+                {
+                    <tr>
+                        <td>@task.Id</td>
+                        <td>@task.TaskName</td>
+                        <td>@task.TaskDescription</td>
+                        <td>Pending</td>
+                        <td>@task.AssignedVolunteer</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="no-data">No volunteer tasks yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
